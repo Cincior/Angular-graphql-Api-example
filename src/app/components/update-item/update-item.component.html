@@ -1,0 +1,10 @@
+<p>Insert data to update</p>
+<form (ngSubmit)="submit()">
+    <label for="id">ID</label>
+    <input type="text" id="id" name="id" [(ngModel)]="inputId">
+    <label for="name">name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="inputName">
+    <label for="email">email</label>
+    <input type="text" id="email" name="emial" [(ngModel)]="inputEmail">
+    <button type="submit">Update</button>
+</form>

@@ -1,0 +1,26 @@
+label {
+    font-size: 20px;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.search {
+    display: flex;
+    
+    justify-content: center;
+    padding: 5px;
+}
+
+.searchSection {
+    display: flex;
+    flex: 1;
+}
+
+.refreshSection {
+    display: flex;
+}
+
+.loader {
+    font-size: 18px;
+    text-decoration: underline;
+}

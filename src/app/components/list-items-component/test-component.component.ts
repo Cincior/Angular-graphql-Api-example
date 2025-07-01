@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { debounceTime, tap } from 'rxjs';
+import { debounceTime, delay, finalize, tap } from 'rxjs';
 import { GraphqlServiceService, User } from '../../services/graphql-service.service';
 
 @Component({
@@ -21,9 +21,7 @@ export class TestComponentComponent {
   }
 
   ngOnInit() {
-    this.graphqlService.getAllUsers().subscribe({
-      next: (usersFromApi) => {this.namesList = usersFromApi; this.filteredList = this.namesList; console.log(usersFromApi)}
-    });
+    this.loadUsers();
 
     this.nameInput.valueChanges
       .pipe(
@@ -40,6 +38,21 @@ export class TestComponentComponent {
         );
       }});
 
+  }
+
+  public loadUsers() {
+    this.isLoading = true;
+    this.graphqlService.getAllUsers().pipe(
+      delay(300),
+      finalize(() => {this.isLoading = false})
+    ).subscribe({
+      next: (usersFromApi) => {
+        setTimeout(() => {}, 2000)
+        this.namesList = usersFromApi;
+        this.filteredList = this.namesList;
+        console.log(usersFromApi); 
+      }
+    });
   }
 
 }

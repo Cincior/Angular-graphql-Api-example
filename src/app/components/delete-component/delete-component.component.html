@@ -1,5 +1,6 @@
-<p>delete-component works!</p>
+<p>Insert id of item you want to delete</p>
 <form (ngSubmit)="submit(inputId.value)">
-    <input type="text" name="" id="" #inputId>
-    <button type="submit">Usuń</button>
+    <label for="id">ID</label>    
+    <input type="text" name="id" id="" #inputId>
+    <button type="submit">Delete</button>
 </form>

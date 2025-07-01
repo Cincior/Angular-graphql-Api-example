@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, input } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 export interface User {
@@ -66,5 +66,29 @@ export class GraphqlServiceService {
     this.http.post<GrapQLResponse<{isDeleted: boolean}>>(this.graphqlURL, {query: mutation}).subscribe({
       next: (is) => {console.log("Usunieto!")}
     })
+  }
+
+  public updateUser(user: User) {
+    let inputFiles = `id: ${user.id}`;
+
+    if(user.name && user.name.trim() != '') {
+      inputFiles += `, name: "${user.name}"`;
+    }
+
+    if(user.email && user.email.trim() != '') {
+      inputFiles += `, email: "${user.email}"`;
+    }
+
+    const mutation = `
+      mutation {
+        updateUser(${inputFiles}) {
+          id,
+          name,
+          email
+        }
+      }
+    `;
+
+    return this.http.post<GrapQLResponse<{updateUser: User}>>(this.graphqlURL, {query: mutation});
   }
 }

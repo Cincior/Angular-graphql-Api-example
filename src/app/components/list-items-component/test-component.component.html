@@ -1,0 +1,16 @@
+<div class="search">
+    <div class="searchSection">
+        <label for="name">Search:</label>
+        <input type="text" id="name" [formControl]="nameInput">
+    </div>
+   <div class="refreshSection">
+        <button (click)="loadUsers()">Refresh</button>
+   </div>
+</div>
+<p [hidden]="!isLoading" class="loader">Loading...</p>
+<ol>
+    <li *ngFor="let user of filteredList">
+    {{user.name}}, {{user.email}}
+    </li>
+</ol>
+

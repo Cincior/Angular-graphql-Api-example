@@ -17,6 +17,8 @@ export class AddItemComponentComponent {
   
   submit() {
     this.graphqlService.addUser(this.name, this.email);
-    console.log('zapisano!')
+    console.log('zapisano!');
+    this.name = '';
+    this.email = '';
   }
 }
