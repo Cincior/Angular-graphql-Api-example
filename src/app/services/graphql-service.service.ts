@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, input } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
@@ -51,7 +51,8 @@ export class GraphqlServiceService {
 
     this.http.post<GrapQLResponse<{newUser: User}>>(this.graphqlURL, {query: mutation}).subscribe(
       {
-        next: () => {console.log("dodalem!")}
+        next: () => {console.log("dodalem!")},
+        error: (e: HttpErrorResponse) => {console.log('err! ' +  e.message)}
       }
     )
   }

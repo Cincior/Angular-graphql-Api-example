@@ -22,6 +22,10 @@ export class UpdateItemComponent {
     this.graphqlService.updateUser(user).subscribe({
       next: (updatedUser) => {
         console.log('dodano' + updatedUser.data.updateUser.email)
+        this.inputId = null;
+        this.inputName = '';
+        this.inputEmail = '';
+
       }
     });
   }
